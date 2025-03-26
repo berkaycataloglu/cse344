@@ -2,10 +2,10 @@ import React from 'react';
 import AuthLayout from '@/layout/AuthLayout';
 import GuestGuard from '@/lib/route-guard/GuestGuard';
 
-function Layout() {
+function Layout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <GuestGuard>
-      <AuthLayout>Layout</AuthLayout>
+      <AuthLayout>{children}</AuthLayout>
     </GuestGuard>
   );
 }

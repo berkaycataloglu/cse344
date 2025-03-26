@@ -4,6 +4,7 @@ import React, { useEffect, useId, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { useOutsideClick } from '@/hooks/use-outside-click';
 import { useRouter } from 'next/navigation';
+import { Input } from './ui/input';
 
 export default function ExpandableCardDemo() {
   const [active, setActive] = useState<(typeof cards)[number] | boolean | null>(null);
@@ -11,6 +12,10 @@ export default function ExpandableCardDemo() {
   const id = useId();
 
   const router = useRouter();
+
+  const [search, setSearch] = useState('');
+
+  const filteredCards = cards.filter((card) => card.title.toLowerCase().includes(search.toLowerCase()));
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
@@ -99,33 +104,37 @@ export default function ExpandableCardDemo() {
           </div>
         ) : null}
       </AnimatePresence>
-      <ul className="max-w-2xl mx-auto w-full flex flex-col gap-4">
-        {cards.map((card, index) => (
-          <motion.div
-            layoutId={`card-${card.title}-${id}`}
-            key={`card-${card.title}-${id}`}
-            onClick={() => router.push(`food/${index}`)}
-            className="p-4 flex flex-col md:flex-row justify-between items-center bg-neutral-100 dark:bg-neutral-900 hover:bg-neutral-50 dark:hover:bg-neutral-800 rounded-xl cursor-pointer "
-          >
-            <div className="flex gap-4 flex-col md:flex-row ">
-              <motion.div layoutId={`image-${card.title}-${id}`}>
-                <Image width={100} height={100} src={card.src} alt={card.title} className="h-40 w-40 mr-2 md:h-24 md:w-24 min-w-24 min-h-24  rounded-lg object-cover object-top" />
-              </motion.div>
-              <div className="">
-                <motion.h3 layoutId={`title-${card.title}-${id}`} className="font-medium text-neutral-800 dark:text-neutral-200 text-center md:text-left">
-                  {card.title}
-                </motion.h3>
-                <motion.p layoutId={`description-${card.description}-${id}`} className="text-neutral-600 dark:text-neutral-400 text-center md:text-left max-w-md">
-                  {card.description}
-                </motion.p>
+      <div className="flex flex-col gap-4 items-center">
+        <Input type="text" value={search} onChange={(e) => setSearch(e.target.value)} className="max-w-3xl" />
+        <ul className="max-w-3xl mx-auto w-full flex flex-col gap-4 ">
+          {/* 3️⃣ Filtrelenmiş Kartları Göster */}
+          {filteredCards.map((card, index) => (
+            <motion.div
+              layoutId={`card-${card.title}`}
+              key={`card-${card.title}`}
+              onClick={() => router.push(`food/${index}`)}
+              className="p-4 flex flex-col md:flex-row justify-between items-center bg-neutral-100 dark:bg-neutral-900 hover:bg-neutral-50 dark:hover:bg-neutral-800 rounded-xl cursor-pointer"
+            >
+              <div className="flex gap-4 flex-col md:flex-row">
+                <motion.div layoutId={`image-${card.title}`}>
+                  <Image width={100} height={100} src={card.src} alt={card.title} className="h-40 w-40 mr-2 md:h-24 md:w-24 min-w-24 min-h-24 rounded-lg object-cover object-top" />
+                </motion.div>
+                <div>
+                  <motion.h3 layoutId={`title-${card.title}`} className="font-medium text-neutral-800 dark:text-neutral-200 text-center md:text-left">
+                    {card.title}
+                  </motion.h3>
+                  <motion.p layoutId={`description-${card.description}`} className="text-neutral-600 dark:text-neutral-400 text-center md:text-left max-w-md">
+                    {card.description}
+                  </motion.p>
+                </div>
               </div>
-            </div>
-            <motion.button layoutId={`button-${card.title}-${id}`} className="px-4 py-2 ml-3 text-sm rounded-full font-medium bg-gray-100 hover:bg-green-500 hover:text-white text-black mt-4 md:mt-0">
-              {card.ctaText}
-            </motion.button>
-          </motion.div>
-        ))}
-      </ul>
+              <motion.button layoutId={`button-${card.title}`} className="px-4 py-2 ml-3 text-sm rounded-full font-medium bg-gray-100 hover:bg-green-500 hover:text-white text-black mt-4 md:mt-0">
+                {card.ctaText}
+              </motion.button>
+            </motion.div>
+          ))}
+        </ul>
+      </div>
     </>
   );
 }

@@ -1,22 +1,35 @@
+'use client';
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { LogOut } from 'lucide-react';
 import { ModeToggle } from '@/components/mode-toggle';
+import { useRouter } from 'next/navigation';
+import useAuth from '@/hooks/useAuth';
 
 function Header() {
+  const router = useRouter();
+  const { logout } = useAuth();
+
   return (
-    <div className="flex justify-between p-4 border-b-gray-600 border-1 items-center">
+    <div className="flex justify-between items-center p-4">
       <h1 className="pl-2">Logo</h1>
       <ul className="flex gap-12">
         <li>
-          <Button variant="ghost">Ana Sayfa</Button>
+          <Button variant="ghost" onClick={() => router.push('/home')}>
+            Ana Sayfa
+          </Button>
         </li>
         <li>
-          <Button variant="ghost">Favoriler</Button>
+          <Button variant="ghost" onClick={() => router.push('/favourities')}>
+            Favoriler
+          </Button>
         </li>
         <li>
-          <Button variant="ghost">Programım</Button>
+          <Button variant="ghost" onClick={() => router.push('/schedule')}>
+            Programım
+          </Button>
         </li>
         <li>
           <DropdownMenu>
@@ -31,7 +44,7 @@ function Header() {
               <DropdownMenuItem>Gizlilik</DropdownMenuItem>
               <DropdownMenuItem>Abonelik</DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={logout}>
                 Çıkış yap
                 <DropdownMenuShortcut>
                   <LogOut strokeWidth={1.5} />
