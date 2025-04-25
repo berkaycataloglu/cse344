@@ -39,7 +39,7 @@ function Header() {
             <DropdownMenuContent>
               <DropdownMenuLabel>Hesap Bilgileri</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>Profil</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => router.push('/profile')}>Profil</DropdownMenuItem>
               <DropdownMenuItem>Billing</DropdownMenuItem>
               <DropdownMenuItem>Gizlilik</DropdownMenuItem>
               <DropdownMenuItem>Abonelik</DropdownMenuItem>
