@@ -1,14 +1,15 @@
 'use client';
-import ExpandableCardDemo from '@/components/expandable-card-demo-grid';
-import React from 'react';
 
-function Favourities() {
+import ExpandableCardDemo from '@/components/expandable-card-demo-grid';
+import { Input } from '@/components/ui/input';
+import React, { useState } from 'react';
+
+function Foods() {
   return (
     <div className="flex flex-col items-center gap-4">
-      <h1 className="font-bold">Favori Yemeklerim</h1>
-      <ExpandableCardDemo favorite />
+      <ExpandableCardDemo />
     </div>
   );
 }
 
-export default Favourities;
+export default Foods;

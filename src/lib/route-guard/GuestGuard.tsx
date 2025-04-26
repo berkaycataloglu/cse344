@@ -21,9 +21,9 @@ const GuestGuard = ({ children }: GuardProps) => {
     if (isLoggedIn) {
       router.push(HOME_PATH);
     }
-  }, [isLoggedIn, location, router]);
+  }, [isLoggedIn, router]);
 
-  if (isLoggedIn && location) return;
+  if (isLoggedIn) return;
 
   return children;
 };

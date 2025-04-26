@@ -40,11 +40,10 @@ function Header() {
               <DropdownMenuLabel>Hesap Bilgileri</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={() => router.push('/profile')}>Profil</DropdownMenuItem>
-              <DropdownMenuItem>Billing</DropdownMenuItem>
               <DropdownMenuItem>Gizlilik</DropdownMenuItem>
               <DropdownMenuItem>Abonelik</DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={logout}>
+              <DropdownMenuItem onClick={() => logout()}>
                 Çıkış yap
                 <DropdownMenuShortcut>
                   <LogOut strokeWidth={1.5} />

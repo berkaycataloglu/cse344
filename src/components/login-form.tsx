@@ -6,8 +6,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import useAuth from '@/hooks/useAuth';
+import { useRouter } from 'next/navigation';
 
 export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) {
+  const router = useRouter();
+
   const { login } = useAuth();
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>
@@ -40,7 +43,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) 
             </div>
             <div className="mt-4 text-center text-sm">
               Hesabınız yok mu? Hemen{' '}
-              <a href="#" className="underline underline-offset-4">
+              <a href="#" className="underline underline-offset-4" onClick={() => router.push('/register')}>
                 Kayıt ol
               </a>
             </div>

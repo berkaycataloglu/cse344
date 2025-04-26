@@ -115,22 +115,27 @@ export default function ExpandableCardDemo() {
               onClick={() => router.push(`food/${index}`)}
               className="p-4 flex flex-col md:flex-row justify-between items-center bg-neutral-100 dark:bg-neutral-900 hover:bg-neutral-50 dark:hover:bg-neutral-800 rounded-xl cursor-pointer"
             >
-              <div className="flex gap-4 flex-col md:flex-row">
+              <div className="flex gap-4 flex-col md:flex-row items-center">
                 <motion.div layoutId={`image-${card.title}`}>
                   <Image width={100} height={100} src={card.src} alt={card.title} className="h-40 w-40 mr-2 md:h-24 md:w-24 min-w-24 min-h-24 rounded-lg object-cover object-top" />
                 </motion.div>
-                <div>
+                <div className="flex flex-col">
                   <motion.h3 layoutId={`title-${card.title}`} className="font-medium text-neutral-800 dark:text-neutral-200 text-center md:text-left">
                     {card.title}
                   </motion.h3>
+
                   <motion.p layoutId={`description-${card.description}`} className="text-neutral-600 dark:text-neutral-400 text-center md:text-left max-w-md">
                     {card.description}
                   </motion.p>
                 </div>
+
+                <motion.button
+                  layoutId={`button-${card.title}`}
+                  className=" h-16 w-36 px-4 py-2 text-sm rounded-full font-medium bg-gray-100 hover:bg-green-500 hover:text-white text-black mt-4 md:mt-0"
+                >
+                  {card.ctaText}
+                </motion.button>
               </div>
-              <motion.button layoutId={`button-${card.title}`} className="px-4 py-2 ml-3 text-sm rounded-full font-medium bg-gray-100 hover:bg-green-500 hover:text-white text-black mt-4 md:mt-0">
-                {card.ctaText}
-              </motion.button>
             </motion.div>
           ))}
         </ul>
@@ -191,10 +196,10 @@ const cards = [
     }
   },
   {
-    description: 'Babbu Maan',
-    title: 'Mitran Di Chhatri',
-    src: 'https://assets.aceternity.com/demos/babbu-maan.jpeg',
-    ctaText: 'Play',
+    description: 'Beyti, kıyma veya kuzu etinden oluşan, şişte ızgara yapılan, lavaşa sarılı, üzerine domates sosu ve yoğurt ilave edilerek servis edilen bir Türk yemeğidir.',
+    title: 'Beyti Kebabı',
+    src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Beyti_in_a_tray_at_Ankara.jpg/1280px-Beyti_in_a_tray_at_Ankara.jpg',
+    ctaText: 'Favorilere Ekle',
     ctaLink: 'https://ui.aceternity.com/templates',
     content: () => {
       return (
@@ -208,10 +213,10 @@ const cards = [
   },
 
   {
-    description: 'Metallica',
-    title: 'For Whom The Bell Tolls',
-    src: 'https://assets.aceternity.com/demos/metallica.jpeg',
-    ctaText: 'Play',
+    description: 'Keyseri Mantısı, çeşitli baharatlarla çeşitlendirilen kıymanın, küçük hamur parçalarının içine konulması ve bu hamur parçalarının suda haşlanması ile yapılan yemektir.',
+    title: 'Keyseri Mantısı',
+    src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Kayseride_bir_restoranda_Kayseri_mant%C4%B1s%C4%B1_%28cropped%29.jpg/1280px-Kayseride_bir_restoranda_Kayseri_mant%C4%B1s%C4%B1_%28cropped%29.jpg',
+    ctaText: 'Favorilere Ekle',
     ctaLink: 'https://ui.aceternity.com/templates',
     content: () => {
       return (
@@ -225,10 +230,10 @@ const cards = [
     }
   },
   {
-    description: 'Led Zeppelin',
-    title: 'Stairway To Heaven',
-    src: 'https://assets.aceternity.com/demos/led-zeppelin.jpeg',
-    ctaText: 'Play',
+    description: 'Yağlama, şebit, kıyma, salçalı sos ve yoğurttan oluşan bir yemektir. Şebitlerin (yufka) üst üste konup, her katın arasına bol sulu ve salçalı kıymanın konmasıyla yapılır.',
+    title: 'Yağlama',
+    src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Kayseri_ya%C4%9Flamas%C4%B1_in_Ankara.jpg/1280px-Kayseri_ya%C4%9Flamas%C4%B1_in_Ankara.jpg',
+    ctaText: 'Favorilere Ekle',
     ctaLink: 'https://ui.aceternity.com/templates',
     content: () => {
       return (
@@ -242,8 +247,8 @@ const cards = [
   },
   {
     description: 'Mustafa Zahid',
-    title: 'Toh Phir Aao',
-    src: 'https://assets.aceternity.com/demos/toh-phir-aao.jpeg',
+    title: 'Ali Nazik',
+    src: 'https://upload.wikimedia.org/wikipedia/commons/5/52/Alinazik.jpg',
     ctaText: 'Play',
     ctaLink: 'https://ui.aceternity.com/templates',
     content: () => {

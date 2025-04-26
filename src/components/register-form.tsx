@@ -6,8 +6,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import useAuth from '@/hooks/useAuth';
+import { useRouter } from 'next/navigation';
 
 export function RegisterForm({ className, ...props }: React.ComponentProps<'div'>) {
+  const router = useRouter();
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>
       <Card>
@@ -21,24 +23,24 @@ export function RegisterForm({ className, ...props }: React.ComponentProps<'div'
               <div className="flex flex-row items-center gap-3">
                 <div className="grid gap-3">
                   <Label htmlFor="email">İsim</Label>
-                  <Input id="email" type="email" placeholder="" required autoComplete="off" />
+                  <Input id="firstname" type="email" placeholder="" required autoComplete="off" />
                 </div>
                 <div className="grid gap-3">
                   <Label htmlFor="email">Soyisim</Label>
-                  <Input id="email" type="email" placeholder="" required autoComplete="off" />
+                  <Input id="lastname" type="email" placeholder="" required autoComplete="off" />
                 </div>
               </div>
 
               <div className="grid gap-3">
                 <Label htmlFor="password">E-posta</Label>
-                <Input id="password" type="password" required />
+                <Input id="email" type="email" required />
               </div>
               <div className="grid gap-3">
                 <Label htmlFor="password">Şifre</Label>
                 <Input id="password" type="password" required />
               </div>
               <div className="flex flex-col gap-3">
-                <Button type="submit" className="w-full">
+                <Button type="submit" className="w-full" onClick={() => router.push('/login')}>
                   Kayıt Ol
                 </Button>
               </div>

@@ -14,10 +14,11 @@ import { GuardProps } from '@/types';
 
 const AuthGuard = ({ children }: GuardProps) => {
   const { isLoggedIn } = useAuth();
-  // const isLoggedIn = true;
+  //const isLoggedIn = true;
   const router = useRouter();
 
   useEffect(() => {
+    console.log(isLoggedIn);
     if (!isLoggedIn) router.push('/login');
   }, [isLoggedIn, router]);
 
